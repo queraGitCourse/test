@@ -14,6 +14,10 @@ if __name__ == "__main__":
         game.start()
 
         print("\nGame Over.\n")
+        if game.winner:
+            print(" **** " + game.winner + " won! ****")
+        else:
+            print(" **** It is a DRAW! ****")
 
         request = input("\n\nenter your command number:\n1. Continue playing\n2. Reset\n3. Quit\n")
         if request == "1":

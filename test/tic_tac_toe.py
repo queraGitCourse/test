@@ -19,51 +19,59 @@ class game:
     def start(self):
         while True:
             self.new_board.printBoard()
+            print("It's your turn, " + self.turn)
+
             move = input()        
 
             if self.new_board.theBoard[move] == ' ':
                 self.new_board.theBoard[move] = self.getSymbolOfPlayer(self.turn)
                 self.count += 1
             else:
+                print("That place is already filled.\nMove to which place?")
                 continue
 
+            # Now we will check if player X or O has won,for every move after 5 moves. 
             if self.count >= 5:
-                if self.new_board.theBoard['7'] == self.new_board.theBoard['8'] == self.new_board.theBoard['9'] != ' ':
+                if self.new_board.theBoard['7'] == self.new_board.theBoard['8'] == self.new_board.theBoard['9'] != ' ': # across the top
                     self.new_board.printBoard() 
                     self.winner = self.turn              
                     break
-                elif self.new_board.theBoard['4'] == self.new_board.theBoard['5'] == self.new_board.theBoard['6'] != ' ':
+                elif self.new_board.theBoard['4'] == self.new_board.theBoard['5'] == self.new_board.theBoard['6'] != ' ': # across the middle
                     self.new_board.printBoard()
                     self.winner = self.turn              
                     break
-                elif self.new_board.theBoard['1'] == self.new_board.theBoard['2'] == self.new_board.theBoard['3'] != ' ':
+                elif self.new_board.theBoard['1'] == self.new_board.theBoard['2'] == self.new_board.theBoard['3'] != ' ': # across the bottom
                     self.new_board.printBoard()
                     self.winner = self.turn              
                     break
-                elif self.new_board.theBoard['1'] == self.new_board.theBoard['4'] == self.new_board.theBoard['7'] != ' ':
+                elif self.new_board.theBoard['1'] == self.new_board.theBoard['4'] == self.new_board.theBoard['7'] != ' ': # down the left side
                     self.new_board.printBoard()
                     self.winner = self.turn              
                     break
-                elif self.new_board.theBoard['2'] == self.new_board.theBoard['5'] == self.new_board.theBoard['8'] != ' ':
+                elif self.new_board.theBoard['2'] == self.new_board.theBoard['5'] == self.new_board.theBoard['8'] != ' ': # down the middle
                     self.new_board.printBoard()
                     self.winner = self.turn              
                     break
-                elif self.new_board.theBoard['3'] == self.new_board.theBoard['6'] == self.new_board.theBoard['9'] != ' ':
+                elif self.new_board.theBoard['3'] == self.new_board.theBoard['6'] == self.new_board.theBoard['9'] != ' ': # down the right side
                     self.new_board.printBoard()
                     self.winner = self.turn              
                     break 
-                elif self.new_board.theBoard['7'] == self.new_board.theBoard['5'] == self.new_board.theBoard['3'] != ' ':
+                elif self.new_board.theBoard['7'] == self.new_board.theBoard['5'] == self.new_board.theBoard['3'] != ' ': # diagonal
                     self.new_board.printBoard()
                     self.winner = self.turn              
                     break
-                elif self.new_board.theBoard['1'] == self.new_board.theBoard['5'] == self.new_board.theBoard['9'] != ' ':
+                elif self.new_board.theBoard['1'] == self.new_board.theBoard['5'] == self.new_board.theBoard['9'] != ' ': # diagonal
                     self.new_board.printBoard()
                     self.winner = self.turn
                     break 
 
+            # If neither X nor O wins and the board is full, we'll declare the result as 'tie'.
             if self.count == 9:
+                print("\nGame Over.\n")                
+                print("It's a Tie!!")
                 break      
 
+            # Now we have to change the player after every move.
             if self.turn == self.player1:
                 self.turn = self.player2
             else:

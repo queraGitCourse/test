@@ -19,6 +19,8 @@ class game:
     def start(self):
         while True:
             self.new_board.printBoard()
+            print("It's your turn, " + self.turn.name + ". Move to which place? (enter a number between 1 and 9)")
+
             move = input()        
 
             if self.new_board.theBoard[move] == ' ':
